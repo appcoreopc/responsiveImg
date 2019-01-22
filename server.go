@@ -16,16 +16,18 @@ func main() {
 
 func ConfigureRestServices() {
 
-	router.GET("/images", posting)
+	router.GET("/images/:id", posting)
 	router.POST("/images", posting)
 	router.PUT("/images", posting)
-	router.DELETE("/images", posting)
+	router.DELETE("/images/:id", posting)
 	router.Run(":3000")
 }
 
 func posting(c *gin.Context) {
 
+	imageId := c.Param("id")
+
 	c.JSON(200, gin.H{
-		"message": "pong",
+		"message": imageId,
 	})
 }
